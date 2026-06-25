@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- UNLISTED: keep this so the page won't show up in search engines -->
+<meta name="robots" content="noindex, nofollow">
+<title>HoudiniMind — Diogo Fernandes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1C; --bg2:#070C16; --panel:#111A2E; --panel2:#0E1729;
+    --tx:#EAF0FB; --tx2:#AEBBD4; --tx3:#8FA0BE; --tx4:#6B7A98;
+    --blue:#5B9BFF; --blue-d:#2C6BE0; --green:#41C28A;
+    --bd:#1E2B45; --bd2:#16223A;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--tx);
+    font-family:var(--sans); line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 30% 0%, #11203B 0%, #0A1424 45%, #070C16 100%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px}
+  a{color:var(--blue); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  section{position:relative; z-index:1}
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.34em;
+    text-transform:uppercase; color:var(--blue); margin:0 0 18px;
+  }
+
+  /* hero */
+  .hero{padding:96px 0 56px}
+  .wordmark{
+    font-family:var(--mono); font-weight:700; letter-spacing:-.01em;
+    font-size:clamp(48px,8vw,104px); line-height:1; margin:0 0 24px;
+  }
+  .wordmark .accent{color:var(--blue)}
+  .tagline{font-size:clamp(20px,2.6vw,32px); color:var(--tx2); max-width:780px; margin:0 0 14px; font-weight:500}
+  .gloss{font-family:var(--mono); font-size:14px; color:var(--tx4); max-width:760px; margin:0}
+
+  /* video */
+  .video-wrap{
+    margin:46px 0 0; border:1px solid var(--bd); border-radius:14px; overflow:hidden;
+    background:var(--panel2); box-shadow:0 30px 80px rgba(0,0,0,.45);
+    aspect-ratio:16/9;
+  }
+  .video-wrap video{width:100%; height:100%; display:block; object-fit:cover}
+  .ask-video{max-width:760px; margin-top:34px}
+  .video-placeholder{
+    width:100%; height:100%; display:flex; flex-direction:column; gap:12px;
+    align-items:center; justify-content:center; text-align:center; padding:24px;
+    color:var(--tx4); font-family:var(--mono); font-size:14px;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 18px, rgba(91,155,255,.03) 18px 36px),
+      var(--panel2);
+  }
+  .video-placeholder .big{color:var(--tx2); font-size:16px}
+
+  /* generic section */
+  .block{padding:64px 0; border-top:1px solid var(--bd)}
+  .block h2{
+    font-family:var(--mono); font-weight:700; font-size:clamp(24px,3vw,34px);
+    margin:0 0 20px; letter-spacing:-.01em;
+  }
+  .lead{font-size:19px; color:var(--tx2); max-width:760px; margin:0}
+
+  /* pipeline */
+  .pipe{display:flex; flex-wrap:wrap; gap:14px; margin-top:36px}
+  .step{
+    flex:1 1 180px; background:var(--panel); border:1px solid var(--bd);
+    border-radius:12px; padding:20px 20px 22px; position:relative;
+  }
+  .step .n{font-family:var(--mono); font-size:14px; font-weight:700; color:var(--blue)}
+  .step.exec .n{color:var(--green)}
+  .step h3{font-family:var(--mono); font-size:18px; margin:8px 0 8px; letter-spacing:.04em}
+  .step p{margin:0; font-size:14.5px; color:var(--tx3); line-height:1.55}
+
+  /* feature grid (what makes it reliable) */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:34px}
+  .card{background:var(--panel); border:1px solid var(--bd); border-radius:12px; padding:22px 22px 24px}
+  .card .k{font-family:var(--mono); font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); margin:0 0 10px}
+  .card h3{font-size:18px; margin:0 0 8px}
+  .card p{margin:0; font-size:14.5px; color:var(--tx3)}
+  code{font-family:var(--mono); font-size:.92em; color:#BFD4FF; background:rgba(91,155,255,.08); padding:1px 6px; border-radius:5px}
+
+  /* domains */
+  .domains{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:30px}
+  .dom{background:var(--panel2); border:1px solid var(--bd2); border-radius:10px; padding:16px 18px}
+  .dom .t{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:.05em; margin:0 0 4px}
+  .dom .d{margin:0; font-size:13.5px; color:var(--tx4)}
+
+  /* stack pills */
+  .pills{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+  .pill{font-family:var(--mono); font-size:14px; color:var(--tx2); border:1px solid var(--bd); border-radius:999px; padding:8px 16px; background:var(--panel2)}
+
+  /* contact */
+  .contact{padding:70px 0 90px; border-top:1px solid var(--bd)}
+  .contact .name{font-family:var(--mono); font-weight:700; font-size:clamp(30px,5vw,52px); margin:0 0 10px}
+  .contact .name .accent{color:var(--blue)}
+  .contact .role{color:var(--tx2); font-size:19px; margin:0 0 6px}
+  .contact .sub{font-family:var(--mono); font-size:14px; color:var(--tx4); margin:0 0 28px}
+  .links{display:flex; flex-direction:column; gap:2px; max-width:560px}
+  .lnk{display:flex; align-items:baseline; gap:18px; padding:14px 0; border-top:1px solid var(--bd2)}
+  .lnk .lbl{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:.08em; color:var(--tx); min-width:120px}
+  .lnk .val{font-size:16px}
+  .note{font-family:var(--mono); font-size:13px; color:var(--tx4); margin:22px 0 0}
+
+  footer{border-top:1px solid var(--bd); padding:26px 0; font-family:var(--mono); font-size:13px; color:var(--tx4)}
+  .foot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+  /* motion */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1; transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none}
+    html{scroll-behavior:auto}
+  }
+  :focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">AI Engineering — Live Demo</p>
+    <h1 class="wordmark">Houdini<span class="accent">Mind</span></h1>
+    <p class="tagline">Natural language to working Houdini setups — generated, validated, and run live.</p>
+    <p class="gloss">Houdini is industry-standard 3D / VFX software. This tool writes its code and executes it automatically.</p>
+
+    <div class="video-wrap">
+      <video autoplay loop muted playsinline>
+        <source src="demo_v02.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>Why an LLM isn't enough</h2>
+    <p class="lead">Ask any LLM for a Houdini setup and it will describe one fluently. Ask it to build one that runs, and it breaks — one mis-wired connection and the simulation silently produces nothing. The hard part isn't generating code that looks right; it's generating code that's correct enough to execute, every time, across six simulation domains.</p>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>How it works</h2>
+    <p class="lead">Generate → validate → execute → verify. Nothing reaches Houdini until it passes the static gate; nothing counts as done until the graph actually cooks.</p>
+    <div class="pipe">
+      <div class="step"><div class="n">01</div><h3>Retrieve</h3><p>RAG over 73,000+ chunks from real production node graphs (ChromaDB), split per domain.</p></div>
+      <div class="step"><div class="n">02</div><h3>Generate</h3><p>The Claude API turns the prompt into structured Houdini Python, constrained by a validated domain skeleton.</p></div>
+      <div class="step"><div class="n">03</div><h3>Validate</h3><p>Static syntax gate, VEX post-processors, and per-domain wiring checks repair and reject bad output.</p></div>
+      <div class="step exec"><div class="n">04</div><h3>Execute</h3><p>Code runs live into Houdini 21 over a TCP bridge — real nodes, real simulation, verified after cook.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEE IT IN ACTION -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>See it in action</h2>
+    <p class="lead">A different domain, same pipeline — a fire simulation generated from a prompt and cooked live in Houdini.</p>
+    <div class="video-wrap" style="margin-top:34px">
+      <video autoplay loop muted playsinline>
+        <source src="demo_v03.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- RELIABILITY -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>What makes it reliable</h2>
+    <p class="lead">The interesting engineering isn't the model call — it's the retrieval, validation, and repair layers around it that make the output reliable enough to run unattended.</p>
+    <div class="grid">
+      <div class="card">
+        <p class="k">Grounded retrieval</p>
+        <h3>Real production files</h3>
+        <p>73,657 chunks indexed from real <code>.hip</code> files, so generation follows how setups are actually wired — not generic docs.</p>
+      </div>
+      <div class="card">
+        <p class="k">Constrained generation</p>
+        <h3>Domain skeletons</h3>
+        <p>Each domain injects a known-good, fill-in-the-blank wiring template into the prompt, killing structural failures at the source.</p>
+      </div>
+      <div class="card">
+        <p class="k">Deterministic repair</p>
+        <h3>Post-processors</h3>
+        <p>Fixers catch the mistakes the model repeats — e.g. <code>fmod(a,b)</code> → <code>a % b</code>, which VEX has no function for.</p>
+      </div>
+      <div class="card">
+        <p class="k">Safe API</p>
+        <h3>Helper layer</h3>
+        <p>A small wrapper (<code>_cn</code>, <code>_sp</code>, <code>_si</code>) hides Houdini's footguns like node aliases and explicit output indices.</p>
+      </div>
+      <div class="card">
+        <p class="k">Per-domain gating</p>
+        <h3>Validators</h3>
+        <p>Ocean checked for the right spectra path, destruction for fracture output indices, KineFX for skin + skeleton both wired.</p>
+      </div>
+      <div class="card">
+        <p class="k">Live execution</p>
+        <h3>TCP bridge</h3>
+        <p>A custom bridge holds the connection to a running Houdini session — this is what turns "generate" into "actually run it."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>Six simulation domains</h2>
+    <div class="domains">
+      <div class="dom"><p class="t">FLIP</p><p class="d">Liquids — particle fluid to meshed surface</p></div>
+      <div class="dom"><p class="t">Ocean</p><p class="d">Spectra, surface evaluation, whitewater</p></div>
+      <div class="dom"><p class="t">Pyro</p><p class="d">Fire and smoke from rasterized sources</p></div>
+      <div class="dom"><p class="t">MPM</p><p class="d">Sand, snow, cohesive materials</p></div>
+      <div class="dom"><p class="t">Destruction</p><p class="d">Fracture, packed RBD, constraints</p></div>
+      <div class="dom"><p class="t">KineFX</p><p class="d">Character rigging and skeletal animation</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASK -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>Not just generation — it answers too</h2>
+    <p class="lead">The same retrieval layer powers an Ask mode: a senior-TD assistant that answers Houdini questions directly, with markdown, separate from the build pipeline. One knowledge base, two ways to use it — generate a setup, or ask how one works.</p>
+
+    <div class="video-wrap ask-video">
+      <video autoplay loop muted playsinline>
+        <source src="ask.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="block">
+  <div class="wrap reveal">
+    <h2>Stack</h2>
+    <div class="pills">
+      <span class="pill">Python 3.12</span>
+      <span class="pill">FastAPI</span>
+      <span class="pill">ChromaDB</span>
+      <span class="pill">sentence-transformers</span>
+      <span class="pill">Claude API</span>
+      <span class="pill">TCP bridge → Houdini 21</span>
+      <span class="pill">React + Vite</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="wrap reveal">
+    <p class="eyebrow">Let's talk</p>
+    <h2 class="name">Diogo <span class="accent">Fernandes</span></h2>
+    <p class="role">VFX pipeline engineer building AI-powered tooling.</p>
+    <p class="sub">13+ years in production VFX · now focused on AI / ML engineering.</p>
+    <div class="links">
+      <div class="lnk"><span class="lbl">Email</span><a class="val" href="mailto:diogoantonio.f@gmail.com">diogoantonio.f@gmail.com</a></div>
+      <div class="lnk"><span class="lbl">LinkedIn</span><a class="val" href="https://www.linkedin.com/in/diogo-fernandes-5221922a/" target="_blank" rel="noopener">linkedin.com/in/diogo-fernandes</a></div>
+      <div class="lnk"><span class="lbl">GitHub</span><a class="val" href="https://github.com/diogofernandes" target="_blank" rel="noopener">github.com/diogofernandes</a></div>
+    </div>
+    <p class="note">Code is private — a full walkthrough is available on request or in an interview.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>HoudiniMind — RAG · LLM · live execution in Houdini 21</span>
+    <span>Lisbon, Portugal</span>
+  </div>
+</footer>
+
+<script>
+  // gentle scroll reveal (respects reduced-motion via CSS)
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
