@@ -8,7 +8,7 @@
 <meta name="color-scheme" content="light">
 <title>HoudiniMind — Diogo Fernandes</title>
 <style>
-:root{--paper:#f3f1e9;--ink:#242923;--muted:#5e655a;--line:#cdd0c3;--accent:#52673c;--dark:#20291f;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+:root{--paper:#f3f1e9;--ink:#292724;--muted:#66615b;--line:#d2cec6;--accent:#b94b0b;--dark:#252321;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:28px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
@@ -18,8 +18,10 @@ button,summary,a,video{outline-offset:5px}
 :focus-visible{outline:2px solid var(--accent)}
 .wrap{width:min(1280px,calc(100% - 96px));margin:auto}
 nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:29px 0;border-bottom:1px solid var(--line)}
-.brand{font-size:19px;font-weight:700;letter-spacing:-.8px}
-.brand span{color:var(--accent)}
+.brand{display:inline-block;font-size:19px;font-weight:700;letter-spacing:-.8px;color:#fff;background:#252321;padding:9px 13px;border-radius:4px;line-height:1.15}
+.brand span{color:#ff8738}
+.brand:hover{text-decoration:none}
+.brand:focus-visible{outline-color:#c6530a}
 .nav-links{display:flex;gap:28px;font-size:13px}
 .label{font-family:var(--mono);font-size:11px;line-height:1.6;letter-spacing:1.1px;text-transform:uppercase}
 .hero{padding:63px 0 0}
@@ -33,7 +35,7 @@ h1 em{font-family:Georgia,serif;font-weight:400;color:var(--accent)}
 .intro .cta{display:inline-flex;margin-top:21px;align-items:center;gap:20px;font-size:13px;font-weight:700}
 .media{position:relative;background:#151a17;overflow:hidden}
 .media video{width:100%;aspect-ratio:16/9;display:block;object-fit:contain}
-.media figcaption{padding:15px 20px;display:flex;justify-content:space-between;gap:15px;background:var(--dark);color:#e8ebe0;font-size:11px;font-family:var(--mono);line-height:1.5}
+.media figcaption{padding:15px 20px;display:flex;justify-content:space-between;gap:15px;background:var(--dark);color:#f5f1eb;font-size:11px;font-family:var(--mono);line-height:1.5}
 figure{margin:0}
 .section{padding:76px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:1fr 2fr;gap:40px;margin-bottom:35px}
@@ -49,6 +51,7 @@ p{line-height:1.6}
 .demo-text p{font-size:15px;color:var(--muted);max-width:290px;margin:17px 0 25px}
 .domain-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
 .domain-list span{border:1px solid var(--line);padding:7px 10px;font-family:var(--mono);font-size:11px}
+#engineering .section-head{display:block}
 .tech{margin-top:35px;border-top:1px solid var(--line)}
 details{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font-size:16px;list-style:none}
@@ -124,7 +127,7 @@ h1{letter-spacing:-2.8px;font-size:clamp(48px,10vw,76px)}
 </div>
 </section>
 <section class="section" id="engineering" aria-labelledby="engineering-title">
-<div class="section-head"><p class="label">Under the hood</p><h2 id="engineering-title">The checks matter<br>as much as the generation.</h2></div>
+<div class="section-head"><h2 id="engineering-title">The checks matter<br>as much as the generation.</h2></div>
 <div class="tech">
 <details><summary>Retrieval from production files</summary><div class="details-body"><p>73,657 chunks indexed from Houdini .hip files in ChromaDB, split by domain. The model receives examples of actual node wiring alongside the prompt.</p></div></details>
 <details><summary>Templates, validation and repair</summary><div class="details-body"><p>Each domain has a wiring template and its own checks: ocean spectra paths, fracture output indices, and skin and skeleton connections for KineFX.</p><p>A helper layer handles node aliases and output indices. Post-processors repair recurring VEX mistakes; a static syntax gate checks code before it reaches Houdini.</p></div></details>
